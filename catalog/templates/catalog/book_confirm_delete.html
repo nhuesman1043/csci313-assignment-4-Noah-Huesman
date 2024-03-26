@@ -14,11 +14,11 @@
 </ul>
 
 {% else %}
-<p>Are you sure you want to delete the book?</p>
+<p>Are you sure you want to delete this book?</p>
 
 <form action="" method="POST">
   {% csrf_token %}
-  <input type="submit" action="" value="Yes, delete.">
+  <button class="btn btn-danger" type="submit">Yes, Delete</button>
 </form>
 {% endif %}
 

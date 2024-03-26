@@ -7,8 +7,13 @@
   font-family: "Poppins", sans-serif;
 }
 
+.sidebar {
+  border-right: solid 0.5px #FFFFFF;
+}
+
 .nav-link:hover {
   background-color: #08415C;
+  opacity: 0.6;
 }
 
 .nav-link-active {
@@ -21,16 +26,50 @@
 
 .user {
   background-color: #08415C;
-  border-top: solid #FFFFFF;
+  border-top: solid 0.5px #FFFFFF;
   padding: 10px;
-  border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.user-btn:hover {
+.custom-btn:hover {
   border: solid 0.3px #FFFFFF;
+}
+
+.custom-btn-green:hover {
+  background-color: #3C9B55;
+  border: solid 0.1px #3C9B55;
+}
+
+.custom-btn-red:hover {
+  background-color: #FF3C38;
+  border: solid 0.1px #FF3C38;
 }
 
 .dropdown-item:hover {
   background-color: #08415C;
+}
+
+.pagination {
+  margin-top: -75px;
+}
+
+.content {
+  background-image: url("../images/bookshelf.jpg");
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.85);
+  background-attachment: fixed;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.main-content {
+  background-color: #F5F5F5;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  border: solid 0.5px #FFFFFF;
+  border-radius: 10px;
+}
+
+.text-link {
+  color: #39A0ED;
 }
