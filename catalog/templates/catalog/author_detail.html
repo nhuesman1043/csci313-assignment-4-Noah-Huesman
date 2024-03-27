@@ -10,7 +10,7 @@
       <h4>Books</h4>
       {% for book in books %}
         <hr />
-        <p><strong>Title:</strong> <a href="{{ book.get_absolute_url }}">{{ book.title }}</a></p>
+        <p><strong>Title:</strong> <a class="text-decoration-none text-link" href="{{ book.get_absolute_url }}">{{ book.title }}</a></p>
         <p><strong>Summary:</strong> {{ book.summary }}</p>
         <p><strong>Genre(s):</strong> {{ book.display_genre }}</p>
       {% empty %}
@@ -19,14 +19,19 @@
     </div>
     {% if perms.catalog.change_author or perms.catalog.delete_author %}
       <hr>
-      <ul class="sidebar-nav">
+      <div class="d-inline">
         {% if perms.catalog.change_author %}
-          <li><a href="{% url 'author-update' author.id %}">Update author</a></li>
+          <button class="btn btn-success">
+            <a class="text-decoration-none text-white fs-5" href="{% url 'author-update' author.id %}">Update Author</a>
+          </button>
         {% endif %}
+        &nbsp;
         {% if not author.book_set.all and perms.catalog.delete_author %}
-          <li><a href="{% url 'author-delete' author.id %}">Delete author</a></li>
+          <button class="btn btn-danger">
+            <a class="text-decoration-none text-white fs-5" href="{% url 'author-delete' author.id %}">Delete Author</a>
+          </button>
         {% endif %}
-      </ul>
+      </div>
     {% endif %}
   </div>
 {% endblock %}

@@ -35,16 +35,6 @@
   border: solid 0.3px #FFFFFF;
 }
 
-.custom-btn-green:hover {
-  background-color: #3C9B55;
-  border: solid 0.1px #3C9B55;
-}
-
-.custom-btn-red:hover {
-  background-color: #FF3C38;
-  border: solid 0.1px #FF3C38;
-}
-
 .dropdown-item:hover {
   background-color: #08415C;
 }
@@ -63,7 +53,6 @@
 }
 
 .main-content {
-  background-color: #F5F5F5;
   margin-top: 50px;
   margin-bottom: 100px;
   border: solid 0.5px #FFFFFF;
@@ -72,4 +61,13 @@
 
 .text-link {
   color: #39A0ED;
+}
+
+.form-table {
+  border-collapse: separate;
+  border-spacing:0 15px;
+}
+
+.form-table td {
+  padding: 0 20px;
 }
