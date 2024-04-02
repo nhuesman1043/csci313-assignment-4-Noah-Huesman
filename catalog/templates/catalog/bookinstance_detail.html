@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div>
+    <div>
+        <span><h1>Book Instance:</h1>{{ bookinstance }}</span>
+    </div>
+    <div style="margin-left:20px;margin-top:20px">
+      <h4>Book Instance Details</h4>
+        <hr />
+        <p><strong>Book:</strong> <a class="text-decoration-none text-link" href="{{ bookinstance.book.get_absolute_url }}">{{ bookinstance.book }}</a></p>
+        <p><strong>Imprint:</strong> {{ bookinstance.imprint }}</p>
+        <p><strong>Due Back:</strong> {{ bookinstance.due_back }}</p>
+        <p><strong>Borrower:</strong> {{ bookinstance.borrower }}</p>
+        <strong>Status:</strong>
+        <span
+            class="{% if bookinstance.status == 'a' %}text-success{% elif bookinstance.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
+            {{ bookinstance.get_status_display }}
+        </span>
+    </div>
+    {% if perms.catalog.bookinstance or perms.catalog.bookinstance %}
+      <hr>
+      <div class="d-inline">
+        {% if perms.catalog.bookinstance %}
+          <button class="btn btn-success">
+            <a class="text-decoration-none text-white fs-5" href="{% url 'bookinstance-update' bookinstance.id %}">Update Book Instance</a>
+          </button>
+        {% endif %}
+        &nbsp;
+        {% if perms.catalog.bookinstance %}
+          <button class="btn btn-danger">
+            <a class="text-decoration-none text-white fs-5" href="{% url 'bookinstance-delete' bookinstance.id %}">Delete Book Instance</a>
+          </button>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

@@ -11,7 +11,6 @@ class Genre(models.Model):
     name = models.CharField(
         max_length=200,
         unique=True,
-        help_text="Enter a book genre (e.g. Science Fiction, French Poetry etc.)"
     )
 
     def __str__(self):
@@ -86,8 +85,6 @@ class BookInstance(models.Model):
         max_length=1,
         choices=LOAN_STATUS,
         blank=True,
-        default='m',
-        help_text='Book availability',
     )
 
     class Meta:
@@ -96,12 +93,16 @@ class BookInstance(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
-        return f'{self.id} ({self.book.title})'
+        return f'{self.id}'
     
     def display_title(self):
         """Create a string for the Title. This is required to display Title in Admin."""
         return self.book.title
     display_title.short_description = 'Title'
+
+    def get_absolute_url(self):
+        """Returns the URL to access a detail record for this book instance."""
+        return reverse('bookinstance-detail', args=[str(self.id)])
 
     @property   
     def is_overdue(self):
@@ -129,8 +130,7 @@ class Author(models.Model):
 class Language(models.Model):
     """Model representing a Language (e.g. English, French, Japanese, etc.)"""
     name = models.CharField(max_length=200,
-                            unique=True,
-                            help_text="Enter the book's natural language (e.g. English, French, Japanese etc.)")
+                            unique=True)
 
     def get_absolute_url(self):
         """Returns the url to access a particular language instance."""

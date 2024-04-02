@@ -1,0 +1,36 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div>
+    <div>
+      <h1>Genre: {{ genre }}</h1>
+    </div>
+    <div style="margin-left:20px;margin-top:20px">
+      <h4>Books</h4>
+      {% for book in books %}
+        <hr />
+        <p><strong>Title:</strong> <a class="text-decoration-none text-link" href="{{ book.get_absolute_url }}">{{ book.title }}</a></p>
+        <p><strong>Summary:</strong> {{ book.summary }}</p>
+        <p><strong>Genre(s):</strong> {{ book.display_genre }}</p>
+      {% empty %}
+        <p>No books found for this genre.</p>
+      {% endfor %}
+    </div>
+    {% if perms.catalog.genre or perms.catalog.genre %}
+      <hr>
+      <div class="d-inline">
+        {% if perms.catalog.genre %}
+          <button class="btn btn-success">
+            <a class="text-decoration-none text-white fs-5" href="{% url 'genre-update' genre.id %}">Update Genre</a>
+          </button>
+        {% endif %}
+        &nbsp;
+        {% if not genre.book_set.all and perms.catalog.genre %}
+          <button class="btn btn-danger">
+            <a class="text-decoration-none text-white fs-5" href="{% url 'genre-delete' genre.id %}">Delete Genre</a>
+          </button>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

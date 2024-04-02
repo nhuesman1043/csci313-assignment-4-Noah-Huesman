@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>List of Book Instances</h1>
+  {% if bookinstance_list %}
+    <ul class="list">
+      {% for bookinstance in bookinstance_list %}
+        <li>
+            <a class="text-decoration-none text-link" href="{{ bookinstance.get_absolute_url }}">{{ bookinstance }}</a>
+            <span> - {{ bookinstance.book }} ({{ bookinstance.imprint }})</span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no instances of books in the library.</p>
+  {% endif %}
+{% endblock %}

@@ -4,13 +4,23 @@
     <h1>All Borrowed Books</h1>
 
     {% if bookinstance_list %}
-    <ul>
+    <ul class="borrowed-list">
       {% for bookinst in bookinstance_list %}
         <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
             <a class="text-decoration-none text-link" href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book.title }}</a> ({{ bookinst.due_back }}) - {{ bookinst.borrower }}
-            {% if perms.catalog.can_mark_returned and bookinst.is_overdue %} 
-              <a class="text-decoration-none text-link" href="{% url 'renew-book-librarian' bookinst.id %}">Renew</a>
-            {% endif %}
+            <br>
+            <div style="margin-left: 10px;">
+              {% if perms.catalog.can_mark_returned %} 
+                <button type="submit" class="btn btn-success text-white btn-sm">
+                  <a class="text-decoration-none text-white" href="{% url 'return-book-librarian' bookinst.id %}">Mark Returned</a>
+                </button>
+              {% endif %}
+              {% if perms.catalog.can_mark_returned and bookinst.is_overdue %} 
+                <button type="submit" class="btn btn-primary text-white btn-sm">
+                  <a class="text-decoration-none text-white" href="{% url 'renew-book-librarian' bookinst.id %}">Renew</a>
+                </button>
+              {% endif %}
+            </div>
         </li>
       {% endfor %}
     </ul>

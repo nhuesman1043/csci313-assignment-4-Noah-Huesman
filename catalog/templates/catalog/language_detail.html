@@ -1,0 +1,37 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div>
+    <div>
+      <h1>Language: {{ language }}</h1>
+    </div>
+    <div style="margin-left:20px;margin-top:20px">
+      <h4>Books</h4>
+      {% for book in books %}
+        <hr />
+        <p><strong>Title:</strong> <a class="text-decoration-none text-link" href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+        by <a class="text-decoration-none text-link" href="{{ book.author.get_absolute_url }}">{{ book.author }}</a></p>
+        <p><strong>Summary:</strong> {{ book.summary }}</p>
+        <p><strong>Genre(s):</strong> {{ book.display_genre }}</p>
+      {% empty %}
+        <p>No books found for this language.</p>
+      {% endfor %}
+    </div>
+    {% if perms.catalog.language or perms.catalog.language %}
+      <hr>
+      <div class="d-inline">
+        {% if perms.catalog.language %}
+          <button class="btn btn-success">
+            <a class="text-decoration-none text-white fs-5" href="{% url 'language-update' language.id %}">Update Language</a>
+          </button>
+        {% endif %}
+        &nbsp;
+        {% if not language.book_set.all and perms.catalog.language %}
+          <button class="btn btn-danger">
+            <a class="text-decoration-none text-white fs-5" href="{% url 'language-delete' language.id %}">Delete Language</a>
+          </button>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

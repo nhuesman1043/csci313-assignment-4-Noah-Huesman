@@ -17,6 +17,9 @@
         <p
           class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
           {{ copy.get_status_display }}
+          {% if copy.status == 'a' %}
+            <span class="text-white">- </span><a class="text-decoration-none text-link" href="{% url 'borrow-book' copy.id %}">Borrow</a>
+          {% endif %}
         </p>
         {% if copy.status != 'a' %}
           <p><strong>Due to be returned:</strong> {{ copy.due_back }}</p>
