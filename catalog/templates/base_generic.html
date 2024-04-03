@@ -37,7 +37,7 @@
                     </a>
                   </li>
                   <li class="nav-item mt-1">
-                    <a {% if "/catalog/book" in request.path|lower and "create" not in request.path and "renew" not in request.path and "bookinstance" not in request.path|lower and "borrowed" not in request.path%} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'generic-list' 'Book' %}">
+                    <a {% if "/catalog/book" in request.path|lower and "create" not in request.path and "renew" not in request.path and "return" not in request.path and "bookinstance" not in request.path|lower and "borrowed" not in request.path%} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'generic-list' 'Book' %}">
                       <i class="h5 fa fa-book align-middle"></i>&nbsp;&nbsp;<span class="fs-4 d-sm-inline">Books</span>
                     </a>
                   </li>
@@ -138,7 +138,7 @@
                 </div>
               </div>
             {% else %}
-              <div class="user position-absolute bottom-0 start-0 end-0 col-sm-3 sidebar">
+              <div class="user position-fixed bottom-0 start-0 end-0 col-sm-3 sidebar">
                 <button class="btn btn-lg align-middle w-100 custom-btn" type="button">
                   <span class="fs-3"><a class="nav-link text-white" href="{% url 'login' %}">Login</a></span>
                 </button>
