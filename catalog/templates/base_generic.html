@@ -37,22 +37,22 @@
                     </a>
                   </li>
                   <li class="nav-item mt-1">
-                    <a {% if "/catalog/book" in request.path and "create" not in request.path and "renew" not in request.path and "bookinstance" not in request.path and "return" not in request.path%} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'books' %}">
+                    <a {% if "/catalog/book" in request.path|lower and "create" not in request.path and "renew" not in request.path and "bookinstance" not in request.path|lower and "borrowed" not in request.path%} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'generic-list' 'Book' %}">
                       <i class="h5 fa fa-book align-middle"></i>&nbsp;&nbsp;<span class="fs-4 d-sm-inline">Books</span>
                     </a>
                   </li>
                   <li class="nav-item mt-1">
-                    <a {% if "/catalog/author" in request.path and "create" not in request.path %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'authors' %}">
+                    <a {% if "/catalog/author" in request.path|lower and "create" not in request.path %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'generic-list' 'Author' %}">
                       <i class="h5 fa fa-pencil align-middle"></i>&nbsp;<span class="fs-4 d-sm-inline">Authors</span>
                     </a>
                   </li>
                   <li class="nav-item mt-1">
-                    <a {% if "/catalog/genre" in request.path and "create" not in request.path %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'genres' %}">
+                    <a {% if "/catalog/genre" in request.path|lower and "create" not in request.path %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'generic-list' 'Genre' %}">
                       <i class="h5 fa-solid fa-masks-theater"></i>&nbsp;<span class="fs-4 d-sm-inline">Genres</span>
                     </a>
                   </li>
                   <li class="nav-item mt-1">
-                    <a {% if "/catalog/language" in request.path and "create" not in request.path %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'languages' %}">
+                    <a {% if "/catalog/language" in request.path|lower and "create" not in request.path %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'generic-list' 'Language' %}">
                       &nbsp;<i class="h5 fa-solid fa-globe"></i>&nbsp;&nbsp;<span class="fs-4 d-sm-inline">Languages</span>
                     </a>
                   </li>
@@ -68,48 +68,48 @@
                 <div class="menu-items">
                   <ul class="nav nav-pills flex-column">
                     <li class="nav-item mt-1">
-                      <a {% if request.path == "/catalog/borrowed/" or "renew" in request.path or "return" in request.path %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'borrowed' %}">
+                      <a {% if request.path == "/catalog/books/borrowed/" or "renew" in request.path or "return" in request.path %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'borrowed' %}">
                         <i class="h5 fa fa-handshake-simple align-middle"></i>&nbsp;<span class="fs-4 d-sm-inline">Borrowed</span>
                       </a>
                     </li>
                     {% if perms.catalog.add_author %}
                       <li class="nav-item mt-1">
-                        <a {% if request.path == "/catalog/author/create/" %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'author-create' %}">
+                        <a {% if request.path == "/catalog/Author/create/" %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'create' 'Author' %}">
                           &nbsp;<i class="h5 fa fa-plus align-middle"></i>&nbsp;&nbsp;<span class="fs-4 d-sm-inline">Add Author</span>
                         </a>
                       </li>
                     {% endif %}
                     {% if perms.catalog.add_book %}
                       <li class="nav-item mt-1">
-                        <a {% if request.path == "/catalog/book/create/" %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'book-create' %}">
+                        <a {% if request.path == "/catalog/Book/create/" %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'create' 'Book' %}">
                           &nbsp;<i class="h5 fa fa-plus align-middle"></i>&nbsp;&nbsp;<span class="fs-4 d-sm-inline">Add Book</span>
                         </a>
                       </li>
                     {% endif %}
                     {% if perms.catalog.add_genre %}
                       <li class="nav-item mt-1">
-                        <a {% if request.path == "/catalog/genre/create/" %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'genre-create' %}">
+                        <a {% if request.path == "/catalog/Genre/create/" %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'create' 'Genre' %}">
                           &nbsp;<i class="h5 fa fa-plus align-middle"></i>&nbsp;&nbsp;<span class="fs-4 d-sm-inline">Add Genre</span>
                         </a>
                       </li>
                     {% endif %}
                     {% if perms.catalog.add_language %}
                       <li class="nav-item mt-1">
-                        <a {% if request.path == "/catalog/language/create/" %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'language-create' %}">
+                        <a {% if request.path == "/catalog/Language/create/" %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'create' 'Language' %}">
                           &nbsp;<i class="h5 fa fa-plus align-middle"></i>&nbsp;&nbsp;<span class="fs-4 d-sm-inline">Add Language</span>
                         </a>
                       </li>
                     {% endif %}
                     {% if perms.catalog.add_bookinstance %}
                       <li class="nav-item mt-1">
-                        <a {% if request.path == "/catalog/bookinstance/create/" %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'bookinstance-create' %}">
+                        <a {% if request.path == "/catalog/BookInstance/create/" %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'create' 'BookInstance' %}">
                           &nbsp;<i class="h5 fa fa-plus align-middle"></i>&nbsp;&nbsp;<span class="fs-4 d-sm-inline">Add Book Instance</span>
                         </a>
                       </li>
                     {% endif %}
                     {% if perms.catalog.delete_bookinstance %}
                       <li class="nav-item mt-1">
-                        <a {% if "/catalog/bookinstance" in request.path and "create" not in request.path %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'bookinstances' %}">
+                        <a {% if "/catalog/bookinstance" in request.path|lower and "create" not in request.path %} class="nav-link-active nav-link text-white" {% else %} class="nav-link text-white" {% endif %} href="{% url 'generic-list' 'BookInstance' %}">
                           &nbsp;&nbsp;<i class="h5 fa-solid fa-bookmark"></i>&nbsp;&nbsp;<span class="fs-4 d-sm-inline">Book Instances</span>
                         </a>
                       </li>

@@ -35,13 +35,13 @@
       <div class="d-inline">
         {% if perms.catalog.change_book %}
           <button class="btn btn-success">
-            <a class="text-decoration-none text-white fs-5" href="{% url 'book-update' book.id %}">Update Book</a>
+            <a class="text-decoration-none text-white fs-5" href="{% url 'update' 'Book' book.id %}">Update Book</a>
           </button>
         {% endif %}
         &nbsp;
         {% if not book.bookinstance_set.all and perms.catalog.delete_book %}
           <button class="btn btn-danger">
-            <a class="text-decoration-none text-white fs-5" href="{% url 'book-delete' book.id %}">Delete Book</a>
+            <a class="text-decoration-none text-white fs-5" href="{% url 'delete' 'Book' book.id %}">Delete Book</a>
           </button>
         {% endif %}
       </div>

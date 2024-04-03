@@ -21,13 +21,13 @@
       <div class="d-inline">
         {% if perms.catalog.genre %}
           <button class="btn btn-success">
-            <a class="text-decoration-none text-white fs-5" href="{% url 'genre-update' genre.id %}">Update Genre</a>
+            <a class="text-decoration-none text-white fs-5" href="{% url 'update' 'Genre' genre.id %}">Update Genre</a>
           </button>
         {% endif %}
         &nbsp;
         {% if not genre.book_set.all and perms.catalog.genre %}
           <button class="btn btn-danger">
-            <a class="text-decoration-none text-white fs-5" href="{% url 'genre-delete' genre.id %}">Delete Genre</a>
+            <a class="text-decoration-none text-white fs-5" href="{% url 'delete' 'Genre' genre.id %}">Delete Genre</a>
           </button>
         {% endif %}
       </div>

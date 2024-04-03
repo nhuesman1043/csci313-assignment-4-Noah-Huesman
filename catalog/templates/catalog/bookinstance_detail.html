@@ -2,8 +2,9 @@
 
 {% block content %}
   <div>
-    <div>
-        <span><h1>Book Instance:</h1>{{ bookinstance }}</span>
+    <div class="d-inline">
+      <h1 class="d-inline">Book Instance:</h1>
+      <span class="d-inline fs-4">&nbsp;{{ bookinstance }}</span>
     </div>
     <div style="margin-left:20px;margin-top:20px">
       <h4>Book Instance Details</h4>
@@ -23,13 +24,13 @@
       <div class="d-inline">
         {% if perms.catalog.bookinstance %}
           <button class="btn btn-success">
-            <a class="text-decoration-none text-white fs-5" href="{% url 'bookinstance-update' bookinstance.id %}">Update Book Instance</a>
+            <a class="text-decoration-none text-white fs-5" href="{% url 'update-uuid' 'BookInstance' bookinstance.id %}">Update Book Instance</a>
           </button>
         {% endif %}
         &nbsp;
         {% if perms.catalog.bookinstance %}
           <button class="btn btn-danger">
-            <a class="text-decoration-none text-white fs-5" href="{% url 'bookinstance-delete' bookinstance.id %}">Delete Book Instance</a>
+            <a class="text-decoration-none text-white fs-5" href="{% url 'delete-uuid' 'BookInstance' bookinstance.id %}">Delete Book Instance</a>
           </button>
         {% endif %}
       </div>

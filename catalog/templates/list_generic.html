@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1> 
+        {% if model_name == 'BookInstance' %}
+            Book Instances
+        {% else %}
+            {{ model_name }}s
+        {% endif %}
+    </h1>
+    {% if object_list %}
+        <ul class="list">
+        {% for object in object_list %}
+            <li>
+                <a class="text-decoration-none text-link" href="{{ object.get_absolute_url }}">{{ object }}</a>
+                {% if model_name == 'Book' %}
+                    &nbsp;-&nbsp;  
+                    {{object.author}}
+                {% elif model_name == 'BookInstance' %}
+                    <span> - {{ object.book }} ({{ object.imprint }})</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no {{ model_name|lower }}s in the library.</p>
+    {% endif %}
+{% endblock %}

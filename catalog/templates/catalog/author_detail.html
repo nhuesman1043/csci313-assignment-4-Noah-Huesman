@@ -22,13 +22,13 @@
       <div class="d-inline">
         {% if perms.catalog.change_author %}
           <button class="btn btn-success">
-            <a class="text-decoration-none text-white fs-5" href="{% url 'author-update' author.id %}">Update Author</a>
+            <a class="text-decoration-none text-white fs-5" href="{% url 'update' 'Author' author.id %}">Update Author</a>
           </button>
         {% endif %}
         &nbsp;
         {% if not author.book_set.all and perms.catalog.delete_author %}
           <button class="btn btn-danger">
-            <a class="text-decoration-none text-white fs-5" href="{% url 'author-delete' author.id %}">Delete Author</a>
+            <a class="text-decoration-none text-white fs-5" href="{% url 'delete' 'Author' author.id %}">Delete Author</a>
           </button>
         {% endif %}
       </div>

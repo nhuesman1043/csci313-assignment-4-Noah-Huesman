@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Delete 
+        {% if model_name == 'BookInstance' %}
+            <div class="d-inline">
+                <h1 class="d-inline">Book Instance:</h1>
+                <span class="fs-4">&nbsp;{{ bookinstance }}</span>
+                &nbsp;&nbsp;<span class="fs-5"><strong>Book & Imprint:</strong> {{ bookinstance.book }} - ({{ bookinstance.imprint }})</span>
+            </div>
+        {% else %}
+            {{ model_name }}: {{ object }}
+        {% endif %}
+    </h1>
+    <br>
+    <p>Are you sure you want to delete?</p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <button class="btn btn-danger fs-5" type="submit">Yes, Delete</button>
+    </form>
+{% endblock %}
